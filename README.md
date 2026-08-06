@@ -1,9 +1,13 @@
 # Task Manager AI
 
+![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688?logo=fastapi&logoColor=white)
+![Status](https://img.shields.io/badge/status-em%20desenvolvimento-orange)
+![Build](https://img.shields.io/badge/build-passing-brightgreen)
+
 Evolução do [Task Manager API](https://github.com/GabrielBorges240/task-manager-api) com camada de **Inteligência Artificial** usando `scikit-learn`.
 
 ## Novas funcionalidades de AI
-
 | Endpoint | Modelo | O que faz |
 |----------|--------|-----------|
 | `POST /ai/prioridade` | Naive Bayes + TF-IDF | Sugere prioridade da tarefa |
@@ -11,7 +15,6 @@ Evolução do [Task Manager API](https://github.com/GabrielBorges240/task-manage
 | `GET /ai/insights` | Estatístico | Score de produtividade + previsão de demanda |
 
 ## Tecnologias
-
 - **FastAPI** — framework web assíncrono
 - **scikit-learn** — modelos de ML (Naive Bayes, Logistic Regression)
 - **TF-IDF** — vetorização de texto
@@ -21,7 +24,6 @@ Evolução do [Task Manager API](https://github.com/GabrielBorges240/task-manage
 - **pytest** — testes automatizados
 
 ## Como rodar
-
 ```bash
 git clone https://github.com/GabrielBorges240/task-manager-ai.git
 cd task-manager-ai
@@ -31,21 +33,18 @@ docker-compose exec api alembic upgrade head
 ```
 
 ## Exemplos de uso
-
 ### Sugerir prioridade
 ```bash
 curl -X POST http://localhost:8000/ai/prioridade \
   -H "Content-Type: application/json" \
   -d '{"titulo": "bug critico sistema fora do ar", "descricao": "clientes bloqueados"}'
 ```
-
 ### Classificar categoria
 ```bash
 curl -X POST http://localhost:8000/ai/categoria \
   -H "Content-Type: application/json" \
   -d '{"titulo": "configurar pipeline ci cd github actions"}'
 ```
-
 ### Insights de produtividade
 ```bash
 curl http://localhost:8000/ai/insights \
@@ -53,45 +52,3 @@ curl http://localhost:8000/ai/insights \
 ```
 
 ## Arquitetura de ML
-
-```
-Título + Descrição
-       ↓
-  Pré-processamento (lowercase, strip)
-       ↓
-  TF-IDF Vectorizer (n-gramas 1-2)
-       ↓
-  Naive Bayes (prioridade) / Logistic Regression (categoria)
-       ↓
-  Prioridade ou Categoria + Confiança
-```
-
-## Testes
-
-```bash
-pip install -r requirements.txt aiosqlite pytest-asyncio
-pytest tests/ -v --cov=app --cov-report=term-missing
-```
-
-## Estrutura
-
-```
-task-manager-ai/
-├── app/
-│   ├── main.py
-│   ├── ml/
-│   │   ├── modelo_prioridade.py
-│   │   ├── modelo_categoria.py
-│   │   └── modelo_produtividade.py
-│   ├── routers/ml.py
-│   └── schemas/ml.py
-├── tests/integration/test_ml.py
-├── Dockerfile
-└── docker-compose.yml
-```
-
-## Autor
-
-Gabriel Borges — [@GabrielBorges240](https://github.com/GabrielBorges240)
-
-> **Projeto Integrador II** — Ciência da Computação UFMS
