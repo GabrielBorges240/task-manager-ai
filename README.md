@@ -8,6 +8,7 @@
 Evolução do [Task Manager API](https://github.com/GabrielBorges240/task-manager-api) com camada de **Inteligência Artificial** usando `scikit-learn`.
 
 ## Novas funcionalidades de AI
+
 | Endpoint | Modelo | O que faz |
 |----------|--------|-----------|
 | `POST /ai/prioridade` | Naive Bayes + TF-IDF | Sugere prioridade da tarefa |
@@ -15,6 +16,7 @@ Evolução do [Task Manager API](https://github.com/GabrielBorges240/task-manage
 | `GET /ai/insights` | Estatístico | Score de produtividade + previsão de demanda |
 
 ## Tecnologias
+
 - **FastAPI** — framework web assíncrono
 - **scikit-learn** — modelos de ML (Naive Bayes, Logistic Regression)
 - **TF-IDF** — vetorização de texto
@@ -24,6 +26,7 @@ Evolução do [Task Manager API](https://github.com/GabrielBorges240/task-manage
 - **pytest** — testes automatizados
 
 ## Como rodar
+
 ```bash
 git clone https://github.com/GabrielBorges240/task-manager-ai.git
 cd task-manager-ai
@@ -32,20 +35,30 @@ docker-compose exec api alembic upgrade head
 # Documentação: http://localhost:8000/docs
 ```
 
+## Configuração
+
+Copie o arquivo `.env.example` para `.env` e preencha com suas próprias chaves antes de rodar o projeto.
+
 ## Exemplos de uso
+
 ### Sugerir prioridade
+
 ```bash
 curl -X POST http://localhost:8000/ai/prioridade \
   -H "Content-Type: application/json" \
   -d '{"titulo": "bug critico sistema fora do ar", "descricao": "clientes bloqueados"}'
 ```
+
 ### Classificar categoria
+
 ```bash
 curl -X POST http://localhost:8000/ai/categoria \
   -H "Content-Type: application/json" \
   -d '{"titulo": "configurar pipeline ci cd github actions"}'
 ```
+
 ### Insights de produtividade
+
 ```bash
 curl http://localhost:8000/ai/insights \
   -H "Authorization: Bearer SEU_TOKEN"
